@@ -1,0 +1,332 @@
+<style>
+    body {
+        margin-top: 20px;
+    }
+
+    .post .article-v2 {
+        padding: 0 15px;
+    }
+
+    .post .article-v2 .entry-title {
+        font-size: 16px;
+        color: #666666;
+        font-weight: 600;
+    }
+
+    .post .article-v2 .article-header {
+        margin-bottom: 15px;
+    }
+
+    .post .article-v2 .article-content-main {
+        -webkit-box-shadow: 1px 0px 20px 1px rgba(0, 0, 0, 0.15);
+        box-shadow: 1px 0px 20px 1px rgba(0, 0, 0, 0.15);
+        padding: 30px;
+        position: relative;
+        background: #fff;
+        margin-top: -75px;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .post .article-v2 .article-content-main {
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+    }
+
+    .post .article-v2 .article-content p:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .post .article-v2 .article-thumb {
+        position: relative;
+        left: 25px;
+        margin-bottom: 0;
+    }
+
+    .post .article-v2 .article-footer {
+        border-top: 1px solid #ebebeb;
+        padding-top: 15px;
+        margin-top: 20px;
+    }
+
+    .post .article-v2 .article-footer .more-link {
+        color: #ffa800;
+    }
+
+    .post .article-v2 .article-footer .footer-meta a {
+        color: #aaa;
+        font-size: 15px;
+        margin-right: 5px;
+    }
+
+    .post .article-v2 .article-footer .footer-meta a i {
+        font-size: 16px;
+        margin-left: 2px;
+    }
+</style>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard/add">Add Blog</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Delete Blog</a>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 text-center full-content">
+            <h2 class="section-title no-border v-3"><span>Latest</span> From Blog</h2>
+            <p class="sub-section-title v-2">Etiam congue rhoncus gravida. Sed vel sodales tortor. Donec eget dictum enim. Donec tempus euismod metus ac maximus, aenean mattis.</p>
+            <div class="mrb-45"></div>
+            <!--  /.mrb -->
+        </div>
+        <!--  /.col-md-12 -->
+    </div>
+    <!--  /.row -->
+
+
+
+
+    <?php
+    $i = 0;
+    $num_rows = ceil(count($d) / 3);
+
+    while ($num_rows > 0) {
+    ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+
+
+
+
+                        <div class="col-md-6 col-xl-4">
+                            <article class="post">
+                                <div class="article-v2">
+                                    <figure class="article-thumb">
+                                        <a href="#">
+                                            <img src="https://img.freepik.com/free-photo/abstract-textured-backgound_1258-30480.jpg?t=st=1648204293~exp=1648204893~hmac=2988165298c61b4b70733c01e12fc2dc819d4b74e1b2792004028b166cb02517&w=740" alt="blog image" height="250px" width="350px" />
+                                        </a>
+                                    </figure>
+                                   
+                                    <div class="article-content-main" style="border: 1px solid red;">
+                                        <div class="article-header">
+                                            <h2 class="entry-title">Title: <a href="#"><?php if(isset($d[$i]["title"])){print_r($d[$i]["title"]);} ?></a></h2>
+                                            <div class="entry-meta">
+                                                <div class="entry-date">Date: <?php if(isset($d[$i]["title"])){print_r($d[$i]["date"]); }?></div>
+                                            
+                                                <div class="entry-cat">
+                                                    <a href="#">Name: <?php if(isset($d[$i]["title"])){print_r($d[$i]["username"]);} ?></a>
+                                                </div>
+                                               
+                                            </div>
+                                           
+                                        </div>
+                                        
+                                        <div class="article-content">
+                                            <p>content:<?php if(isset($d[$i]["title"])){print_r($d[$i]['content']);
+                                                        }?></p>
+                                        </div>
+
+                                        <div class="article-content">
+                                        <form action = "/dashboard/edit" method = "post">
+                                        <input type = "hidden" name ="edit_id2" value = "<?php print_r($d[$i]['id']) ?>"> 
+                                          <input type = "submit" name ="edit_id" value = "Edit" class="btn btn-primary"> 
+                                        </form>
+                                        <form action = "/dashboard/delete" method = "post">
+                                        <input type = "hidden" name ="delete_id2" value = "<?php print_r($d[$i]['id']) ?>"> 
+                                        <br>  <input type = "submit" name ="delete_id" value = "Delete" class="btn btn-danger"> 
+                                        </form>
+                                        </div>
+                                        <?php $i+=1; ?>
+                                        <div class="article-footer">
+                                            <div class="row">
+                                                <div class="col-6 text-left footer-link">
+                                                    <a href="#" class="more-link">Read More</a>
+                                                </div>
+                                               
+                                                <div class="col-6 text-right footer-meta">
+                                                    <a href="#">65 <i class="pe-7s-comment"></i></a>
+                                                    <a href="#">50 <i class="pe-7s-share"></i></a>
+                                                </div>
+                                              
+                                            </div>
+                                       
+                                        </div>
+                                      
+                                    </div>
+                                 
+                                </div>
+                               
+                            </article>
+                          
+                        </div>
+
+
+<?php if(!isset($d[$i]["title"])){
+    break;
+} ?>
+
+                        <div class="col-md-6 col-xl-4">
+                            <article class="post">
+                                <div class="article-v2">
+                                    <figure class="article-thumb">
+                                        <a href="#">
+                                        <img src="https://img.freepik.com/free-photo/abstract-red-background-christmas-valentines-layout-designstudioroom-web-template-business-report-wi_1258-52403.jpg?t=st=1648213635~exp=1648214235~hmac=27e2fc7a4d20e859e4069cfd1f63c0d47f3cd933256e217591c596f07777e16b&w=826" alt="blog image" height="250px" width="350px"/>
+                                        </a>
+                                    </figure>
+                                   
+                                    <div class="article-content-main" style="border: 1px solid red;">
+                                        <div class="article-header">
+                                            <h2 class="entry-title">Title: <a href="#"><?php if(isset($d[$i]["title"])){print_r($d[$i]["title"]);} ?></a></h2>
+                                            <div class="entry-meta">
+                                                <div class="entry-date">Date: <?php if(isset($d[$i]["title"])){print_r($d[$i]["date"]); }?></div>
+                                            
+                                                <div class="entry-cat">
+                                                    <a href="#">Name: <?php if(isset($d[$i]["title"])){print_r($d[$i]["username"]);} ?></a>
+                                                </div>
+                                               
+                                            </div>
+                                           
+                                        </div>
+                                        
+                                        <div class="article-content">
+                                            <p>content:<?php if(isset($d[$i]["title"])){print_r($d[$i]['content']);
+                                                        }?></p>
+                                        </div>
+                                        <div class="article-content">
+                                        <form action = "/dashboard/edit" method = "post">
+                                        <input type = "hidden" name ="edit_id2" value = "<?php print_r($d[$i]['id']) ?>"> 
+                                          <input type = "submit" name ="edit_id" value = "Edit" class="btn btn-primary"> 
+                                        </form>
+                                        <form action = "/dashboard/delete" method = "post">
+                                        <input type = "hidden" name ="delete_id2" value = "<?php print_r($d[$i]['id']) ?>"> 
+                                          <br><input type = "submit" name ="delete_id" value = "Delete" class="btn btn-danger" > 
+                                        </form>
+                                        </div>
+                                        <?php $i+=1; ?>
+                                        <div class="article-footer">
+                                            <div class="row">
+                                                <div class="col-6 text-left footer-link">
+                                                    <a href="#" class="more-link">Read More</a>
+                                                </div>
+                                               
+                                                <div class="col-6 text-right footer-meta">
+                                                    <a href="#">65 <i class="pe-7s-comment"></i></a>
+                                                    <a href="#">50 <i class="pe-7s-share"></i></a>
+                                                </div>
+                                              
+                                            </div>
+                                       
+                                        </div>
+                                      
+                                    </div>
+                                 
+                                </div>
+                               
+                            </article>
+                            <?php if(!isset($d[$i]["title"])){
+    break;
+} ?>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <article class="post">
+                                <div class="article-v2">
+                                    <figure class="article-thumb">
+                                        <a href="#">
+                                        <img src="https://img.freepik.com/free-photo/abstract-empty-smooth-light-pink-studio-room-background-use-as-montage-product-display-banner-template_1258-55518.jpg?w=826&t=st=1648213707~exp=1648214307~hmac=2c63dc39924586650ca4ff0428c28b1e2f22e9091d3ce8a393c1caa43f82dd7a" alt="blog image" height="250px" width="350px"/>
+                                        </a>
+                                    </figure>
+                                   
+                                    <div class="article-content-main" style="border: 1px solid red;">
+                                        <div class="article-header">
+                                            <h2 class="entry-title">Title: <a href="#"><?php if(isset($d[$i]["title"])){print_r($d[$i]["title"]);} ?></a></h2>
+                                            <div class="entry-meta">
+                                                <div class="entry-date">Date: <?php if(isset($d[$i]["title"])){print_r($d[$i]["date"]); }?></div>
+                                            
+                                                <div class="entry-cat">
+                                                    <a href="#">Name: <?php if(isset($d[$i]["title"])){print_r($d[$i]["username"]);} ?></a>
+                                                </div>
+                                               
+                                            </div>
+                                           
+                                        </div>
+                                        
+                                        <div class="article-content">
+                                            <p>content:<?php if(isset($d[$i]["title"])){print_r($d[$i]['content']);
+                                                        }?></p>
+                                        </div>
+                                        <div class="article-content">
+                                        <form action = "/dashboard/edit" method = "post">
+                                        <input type = "hidden" name ="edit_id2" value = "<?php print_r($d[$i]['id']) ?>"> 
+                                          <input type = "submit" name ="edit_id" value = "Edit" class="btn btn-primary">  
+                                        </form>
+                                        <form action = "/dashboard/delete" method = "post">
+                                        <input type = "hidden" name ="delete_id2" value = "<?php print_r($d[$i]['id']) ?>"> 
+                                         <br> <input type = "submit" name ="delete_id" value = "Delete" class="btn btn-danger"> 
+                                        </form>
+                                        </div>
+                                        <?php $i+=1; ?>
+
+                                        
+                                        <div class="article-footer">
+                                            <div class="row">
+                                                <div class="col-6 text-left footer-link">
+                                                    <a href="#" class="more-link">Read More</a>
+                                                </div>
+                                               
+                                                <div class="col-6 text-right footer-meta">
+                                                    <a href="#">65 <i class="pe-7s-comment"></i></a>
+                                                    <a href="#">50 <i class="pe-7s-share"></i></a>
+                                                </div>
+                                              
+                                            </div>
+                                       
+                                        </div>
+                                      
+                                    </div>
+                                 
+                                </div>
+                               
+                            </article>
+                          
+                        </div>
+                        
+                    </div>
+                  
+                </div>
+            
+            </div>
+            
+        </div>
+
+        <br>
+        <br>
+
+    <?php
+        // $num_rows = ceil(count($d) / $i);
+        $num_rows--;
+    }
+
+    ?>
